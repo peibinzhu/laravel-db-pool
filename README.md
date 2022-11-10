@@ -1,0 +1,10 @@
+Laravel 数据库连接池组件
+=======
+
+## 安装
+
+运行下面命令进行安装
+
+```sh
+composer require peibin/laravel-db-pool
+```
