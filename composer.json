@@ -33,7 +33,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "PeibinLaravel\\ConfigCenter\\DbPoolServiceProvider"
+                "PeibinLaravel\\DbPool\\DbPoolServiceProvider"
             ]
         }
     },
