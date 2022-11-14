@@ -50,6 +50,7 @@ class BootstrapListener
         $this->container->singleton(ConnectionResolver::class);
 
         Model::setConnectionResolver($this->container['db']);
+        Model::setEventDispatcher($this->container['events']);
 
         // The bindings listed below will be preloaded, avoiding repeated instantiation.
         foreach ($this->warmServices as $service) {
