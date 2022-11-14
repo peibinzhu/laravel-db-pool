@@ -28,12 +28,8 @@ class Connection extends BaseConnection implements ConnectionInterface, DbConnec
 
     protected bool $transaction = false;
 
-    public function __construct(
-        Container $container,
-        PoolInterface $pool,
-        protected array $config,
-        protected string $name
-    ) {
+    public function __construct(Container $container, PoolInterface $pool, protected array $config)
+    {
         parent::__construct($container, $pool);
 
         $this->factory = $container->get(ConnectionFactory::class);
@@ -47,7 +43,7 @@ class Connection extends BaseConnection implements ConnectionInterface, DbConnec
         return $this->connection->{$name}(...$arguments);
     }
 
-    public function getActiveConnection()
+    public function getActiveConnection(): DbConnectionInterface
     {
         if ($this->check()) {
             return $this;

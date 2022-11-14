@@ -31,7 +31,7 @@ class DbPool extends Pool
         $this->config = $config->get($key);
         $options = Arr::get($this->config, 'pool', []);
 
-        $this->frequency = $container->make(Frequency::class);
+        $this->frequency = $container->make(Frequency::class, ['pool' => $this]);
         parent::__construct($container, $options);
     }
 
@@ -42,6 +42,6 @@ class DbPool extends Pool
 
     protected function createConnection(): ConnectionInterface
     {
-        return new Connection($this->container, $this, $this->config, $this->name);
+        return new Connection($this->container, $this, $this->config);
     }
 }
