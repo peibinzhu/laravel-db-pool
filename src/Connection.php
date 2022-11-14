@@ -8,7 +8,6 @@ use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\ConnectionInterface as DbConnectionInterface;
 use Illuminate\Database\Connectors\ConnectionFactory;
-use Illuminate\Database\DatabaseManager;
 use PeibinLaravel\Contracts\StdoutLoggerInterface;
 use PeibinLaravel\DbPool\Traits\DbConnection;
 use PeibinLaravel\Pool\Connection as BaseConnection;
@@ -65,11 +64,7 @@ class Connection extends BaseConnection implements ConnectionInterface, DbConnec
     {
         $this->close();
 
-        $manager = new DatabaseManager(
-            $this->container,
-            $this->container->get(ConnectionFactory::class)
-        );
-        $this->connection = $manager->connection($this->name);
+        $this->connection = $this->factory->make($this->config);
 
         if ($this->connection instanceof \Illuminate\Database\Connection) {
             // Reset event dispatcher after db reconnect.

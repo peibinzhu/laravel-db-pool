@@ -25,6 +25,9 @@ class DbPool extends Pool
             throw new InvalidArgumentException(sprintf('config[%s] is not exist!', $key));
         }
 
+        // Rewrite the `name` of the configuration item to ensure that the model query builder gets the right connection.
+        $config->set("{$key}.name", $name);
+
         $this->config = $config->get($key);
         $options = Arr::get($this->config, 'pool', []);
 
