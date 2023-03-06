@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace PeibinLaravel\DbPool;
 
-use Illuminate\Console\Events\ArtisanStarting;
 use Illuminate\Support\ServiceProvider;
-use PeibinLaravel\DbPool\Listeners\BootstrapListener;
-use PeibinLaravel\SwooleEvent\Events\BeforeMainServerStart;
-use PeibinLaravel\Utils\Providers\RegisterProviderConfig;
+use PeibinLaravel\DbPool\Listeners\BootApplicationListener;
+use PeibinLaravel\DbPool\Pool\PoolFactory;
+use PeibinLaravel\ProviderConfig\Contracts\ProviderConfigInterface;
+use PeibinLaravel\SwooleEvent\Events\BootApplication;
 
-class DbPoolServiceProvider extends ServiceProvider
+class DbPoolServiceProvider extends ServiceProvider implements ProviderConfigInterface
 {
-    use RegisterProviderConfig;
-
     public function __invoke(): array
     {
         return [
-            'listeners' => [
-                ArtisanStarting::class       => BootstrapListener::class,
-                BeforeMainServerStart::class => BootstrapListener::class,
+            'dependencies' => [
+                PoolFactory::class        => PoolFactory::class,
+                ConnectionResolver::class => ConnectionResolver::class,
+            ],
+            'listeners'    => [
+                BootApplication::class => BootApplicationListener::class,
             ],
         ];
     }
