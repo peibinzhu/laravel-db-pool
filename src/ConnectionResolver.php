@@ -9,8 +9,8 @@ use Illuminate\Contracts\Container\Container;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\ConnectionResolverInterface;
 use PeibinLaravel\Context\Context;
+use PeibinLaravel\Coroutine\Coroutine;
 use PeibinLaravel\DbPool\Pool\PoolFactory;
-use Swoole\Coroutine;
 
 class ConnectionResolver implements ConnectionResolverInterface
 {
@@ -45,7 +45,7 @@ class ConnectionResolver implements ConnectionResolverInterface
                 $connection = $connection->getConnection();
                 Context::set($id, $connection);
             } finally {
-                if (Coroutine::getCid() > 0) {
+                if (Coroutine::id() > 0) {
                     Coroutine::defer(function () use ($connection, $id) {
                         Context::set($id, null);
                         $connection->release();

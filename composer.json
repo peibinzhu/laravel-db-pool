@@ -1,44 +1,44 @@
 {
-    "name": "peibin/laravel-db-pool",
-    "description": "Peibin db pool abstraction component for Laravel.",
-    "license": "MIT",
-    "keywords": [
-        "php",
-        "laravel",
-        "config-center"
-    ],
-    "authors": [
-        {
-            "name": "Peibin Zhu",
-            "email": "zhupeibin1207@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=8.0",
-        "peibin/laravel-context": "^1.0",
-        "peibin/laravel-pool": "^1.0",
-        "peibin/laravel-provider-config": "^1.0",
-        "peibin/laravel-swoole-event": "^1.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "PeibinLaravel\\DbPool\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "PeibinLaravelTest\\DbPool\\": "tests/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "PeibinLaravel\\DbPool\\DbPoolServiceProvider"
-            ]
-        }
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "prefer-stable": true
+  "name": "peibin/laravel-db-pool",
+  "description": "Peibin db pool abstraction component for Laravel.",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "swoole",
+    "laravel",
+    "config-center"
+  ],
+  "authors": [
+    {
+      "name": "Peibin Zhu",
+      "email": "zhupeibin1207@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "peibin/laravel-context": "^2.0",
+    "peibin/laravel-pool": "^2.0",
+    "peibin/laravel-swoole-event": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "PeibinLaravel\\DbPool\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PeibinLaravelTest\\DbPool\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "PeibinLaravel\\DbPool\\DbPoolServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "prefer-stable": true
 }

@@ -6,7 +6,7 @@ namespace PeibinLaravel\DbPool;
 
 use Illuminate\Database\Connectors\ConnectionFactory;
 use Illuminate\Database\DatabaseManager as IlluminateDatabaseManager;
-use Swoole\Coroutine;
+use PeibinLaravel\Coroutine\Coroutine;
 
 class DatabaseManager extends IlluminateDatabaseManager
 {
@@ -84,6 +84,6 @@ class DatabaseManager extends IlluminateDatabaseManager
      */
     protected function isPoolConnection(string $name): bool
     {
-        return Coroutine::getCid() > 0 && isset($this->config[$name]['pool']);
+        return Coroutine::id() > 0 && isset($this->config[$name]['pool']);
     }
 }
